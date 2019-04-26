@@ -1,18 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using CharacterStats;
 
-public class BasePlayerStats : MonoBehaviour
+public class Character : MonoBehavior
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public CharacterStat Strength = 10;
 
-    // Update is called once per frame
-    void Update()
+    public CharacterStat Dexterity = 10;
+
+    public CharacterStat Vitality = 10;
+
+    public int PlayerLevel = 1;
+
+
+
+    public void WoodenButterKnife()
     {
-        
+        Strength.AddModifier(new StatModifier(10, StatModType));
+
+      
+
+       
     }
 }
