@@ -7,7 +7,7 @@ public class walking_script : MonoBehaviour
     public float curSpeed;
     public float maxSpeed;
 
-    private CharacterStat plStat;
+    private playerStats plStat;
     // Start is called before the first frame update
     void Start()
     {
