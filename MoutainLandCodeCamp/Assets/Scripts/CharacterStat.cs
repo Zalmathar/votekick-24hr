@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-[Serializable]
+// [Serializable]
 public class CharacterStat
 {
     public float BaseValue;
@@ -22,12 +22,12 @@ public class CharacterStat
         }
     }
 
-    protected bool isDirty = true;
-    protected float _value;
-    protected float lastBaseValue = float.MinValue;
+    private bool isDirty = true;
+    private float _value;
+    private float lastBaseValue = float.MinValue;
 
-    protected readonly List<StatModifier> statModifiers;
-    protected readonly ReadOnlyCollection<StatModifier> StatModifiers;
+    private readonly List<StatModifier> statModifiers;
+    private readonly ReadOnlyCollection<StatModifier> StatModifiers;
 
     public CharacterStat()
     {
@@ -48,7 +48,7 @@ public class CharacterStat
         statModifiers.Sort(CompareModifierOrder);
     }
 
-    protected int CompareModifierOrder(StatModifier a, StatModifier b)
+    private int CompareModifierOrder(StatModifier a, StatModifier b)
     {
         if (a.Order < b.Order)
             return -1;
@@ -84,7 +84,7 @@ public class CharacterStat
         return didRemove;
     }
 
-    protected float CalculateFinalValue()
+    private float CalculateFinalValue()
     {
         float finalValue = BaseValue;
         float sumPercentAdd = 0;

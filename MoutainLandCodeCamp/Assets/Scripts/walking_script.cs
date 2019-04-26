@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class walking_script : MonoBehaviour
 {
     public float walkSpeed;
     public float curSpeed;
     public float maxSpeed;
 
-    private playerStats plStat;
+    private BasePlayerStats plStat;
     // Start is called before the first frame update
     void Start()
     {
-        plStat = GetComponent<CharacterStat>();
+        plStat = GetComponent<BasePlayerStats>();
 
         walkSpeed = (float)(plStat.Speed + (plStat.Agility/5));
         sprintSpeed = walkSpeed + (walkSpeed / 2);

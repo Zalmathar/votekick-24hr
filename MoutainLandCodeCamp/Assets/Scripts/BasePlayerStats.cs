@@ -1,24 +1,15 @@
 ﻿using UnityEngine;
-using CharacterStats;
+using static CharacterStat;
 
-public class Character : MonoBehavior
+public class BasePlayerStats : MonoBehaviour
 {
-    public CharacterStat Strength = 10;
-
-    public CharacterStat Dexterity = 10;
-
-    public CharacterStat Vitality = 10;
-
-    public int PlayerLevel = 1;
-
-
+    public CharacterStat Strength;
+    public CharacterStat Agility;
+    public CharacterStat Vitality;
+    
 
     public void WoodenButterKnife()
     {
-        Strength.AddModifier(new StatModifier(10, StatModType));
-
-      
-
-       
+        Strength.AddModifier(new StatModifier(10, StatModType.Flat));
     }
 }
