@@ -6,7 +6,6 @@ public class CameraFollowScript : MonoBehaviour
 {
     public void Follow()
     {
-        transform.position = new Vector3(playerGarrett.transform.position.x, playerGarrett.transform.position.y, transform.position.z);
     }
     private GameObject playerGarrett;
     
@@ -19,7 +18,7 @@ public class CameraFollowScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+         transform.position = new Vector3(playerGarrett.transform.position.x, playerGarrett.transform.position.y, transform.position.z);
     }
 
 }
