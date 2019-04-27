@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class MonsterController : MonoBehaviour
 {
+    public int maxHealth = 10;
+    public Text RealHealth;
+    private int currentHealth;
     public float speed;
-    private GameObject player;
     private GameObject Monster;
 
     private Rigidbody2D rb;
@@ -14,33 +18,43 @@ public class MonsterController : MonoBehaviour
 
     private Vector2 moveVelocity;
 
-    void Start()
+    private void Start()
     {
         cl = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
-        Monster = FindObjectOfType<MonsterController>().gameObject;
-        player = FindObjectOfType<PlayerController>().gameObject;       
+        Monster = FindObjectOfType<MonsterController>().gameObject;     
         StartCoroutine(EnemyUpdate());
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            AlterHealth(3);
+        }
+    }
+
     
     IEnumerator EnemyUpdate()
     {
         while (true)
         {
-            Vector2 playerPosition = player.transform.position;
-            Vector2 monsterPosition = Monster.transform.position;
-            var distance = Vector2.Distance(playerPosition, monsterPosition);
-            if (distance > 2)
-            {
-                Vector2 moveInput = new Vector2(Random.Range(-1,2), Random.Range(-1,2));
-                moveVelocity = moveInput.normalized * speed; 
-                rb.velocity = moveVelocity;
-                yield return new WaitForSeconds(1);           
-            }
-            else if (distance < 2)
-            {
-                rb.transform.position = Vector2.MoveTowards(rb.transform.position, playerPosition, 2);
-            }   
+            Vector2 moveInput = new Vector2(Random.Range(-1,2), Random.Range(-1,2));
+            moveVelocity = moveInput.normalized * speed; 
+            rb.velocity = moveVelocity;
+            yield return new WaitForSeconds(1);
         }
+    }
+
+    private void UpdateGUI()
+    {
+        RealHealth.text = currentHealth.ToString() + "/" + maxHealth.ToString();
+    }
+
+    public void AlterHealth(int damage)
+    {
+        currentHealth += damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateGUI();
     }
 }

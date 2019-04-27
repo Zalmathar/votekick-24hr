@@ -5,6 +5,7 @@ using UnityEngine;
 public class TownInit : MonoBehaviour
 {
     public GameObject garret;
+    public GameObject monster;
     // Start is called before the first frame update
     void Start()
     {

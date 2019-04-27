@@ -2,19 +2,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class PlayerHealthSystem
 {
     public int maxHealth = 10;
     public Text RealHealth;
     private int currentHealth;
 
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
         UpdateGUI();
     }
 
-    void UpdateGUI()
+    private void UpdateGUI()
     {
         RealHealth.text = currentHealth.ToString() + "/" + maxHealth.ToString();
     }
