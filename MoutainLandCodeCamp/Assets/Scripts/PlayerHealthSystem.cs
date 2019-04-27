@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     void UpdateGUI()
     {
-        RealHealth.text = currentHealth.ToString() + "/" + maxHealth.ToString()
+        RealHealth.text = currentHealth.ToString() + "/" + maxHealth.ToString();
     }
 
     public void AlterHealth(int damage)
