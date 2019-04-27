@@ -6,7 +6,7 @@ public class PlayerHealthSystem
 {
     public int maxHealth = 10;
     public Text RealHealth;
-    private int currentHealth;
+    public int currentHealth;
 
     private void Start()
     {
