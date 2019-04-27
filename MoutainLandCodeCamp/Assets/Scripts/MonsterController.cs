@@ -5,6 +5,8 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour
 {
     public float speed;
+    private GameObject player;
+    private GameObject Monster;
 
     private Rigidbody2D rb;
 
@@ -15,9 +17,9 @@ public class MonsterController : MonoBehaviour
     void Start()
     {
         cl = GetComponent<Collider2D>();
-
         rb = GetComponent<Rigidbody2D>();
-
+        Monster = FindObjectOfType<MonsterController>().gameObject;
+        player = FindObjectOfType<PlayerController>().gameObject;       
         StartCoroutine(EnemyUpdate());
     }
     
@@ -25,10 +27,20 @@ public class MonsterController : MonoBehaviour
     {
         while (true)
         {
-            Vector2 moveInput = new Vector2(Random.Range(-1,1), Random.Range(-1,1));
-            moveVelocity = moveInput.normalized * speed;
-            rb.velocity = moveVelocity;
-            yield return new WaitForSeconds(5);
+            Vector2 playerPosition = player.transform.position;
+            Vector2 monsterPosition = Monster.transform.position;
+            var distance = Vector2.Distance(playerPosition, monsterPosition);
+            if (distance > 2)
+            {
+                Vector2 moveInput = new Vector2(Random.Range(-1,2), Random.Range(-1,2));
+                moveVelocity = moveInput.normalized * speed; 
+                rb.velocity = moveVelocity;
+                yield return new WaitForSeconds(1);           
+            }
+            else if (distance < 2)
+            {
+                rb.transform.position = Vector2.MoveTowards(rb.transform.position, playerPosition, 2);
+            }   
         }
     }
 }
