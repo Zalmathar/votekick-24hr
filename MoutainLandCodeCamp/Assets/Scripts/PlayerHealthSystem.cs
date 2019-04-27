@@ -1,10 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Player : MonoBehavior
+public class Player : MonoBehaviour
 {
     public int maxHealth = 10;
-    public Text currentHealthLabel;
+    public Text RealHealth;
     private int currentHealth;
 
     void Start()
@@ -15,7 +16,7 @@ public class Player : MonoBehavior
 
     void UpdateGUI()
     {
-        currenthHealthLabel.text = currentHealth.ToString();
+        RealHealth.text = currentHealth.ToString();
     }
 
     public void AlterHealth(int damage)
